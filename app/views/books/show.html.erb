@@ -1,2 +1,23 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h1>Book detail</h1>
+
+<%= render 'template', user: @user, book: @book %>
+
+<% if @user.image.attached? %>
+    <%= image_tag @user.image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no-image', size: "100x100" %>
+  <% end %>
+  
+  <h3><%= @user.name %></h3> 
+  
+<% @books.each do |book| %>
+
+  <span><%= book.title %></span>
+  
+  <span><%= book.body %></span>
+  
+  <%=　link_to "Edit", edit_book_path %>
+  <%= link_to "Destroy", book_path(@book.id), method: :delete, "deta-confirm" => "本当に消しますか？"
+
+  
+<% end %>
