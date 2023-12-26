@@ -13,48 +13,134 @@
 
   <body>
     <header>
-      <h2>Bookers</h2>
-    <% if user_signed_in? %>
-      <li>
-        <i class="fa-solid fa-house"></i>
-        <%= link_to "Home", user_path(current_user.id) %>
-      </li>
-      <li>
-        <i class="fa-solid fa-users"></i>
-        <%= link_to "Users", users_path %>
-      </li>
-      <li>
-        <i class="fa-solid fa-book-open"></i>
-        <%= link_to "Books", books_path %>
-      </li>
-      <li>
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-    <li>
-      <i class="fa-solid fa-house"></i>
-      <%= link_to "Home", root_path %>
-      </li>
-      <li>
-        <i class="fa-solid fa-link"></i>
-        <%= link_to "About", home_about_path %>
-      </li>
-      <li>
-        <i class="fa-solid fa-user-plus"></i>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <i class="fa-solid fa-right-to-bracket"></i>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
-    <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/"><span>Bookers</span></a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            
+            <% if user_signed_in? %>
+            <li>
+              <%= link_to user_path(current_user.id), class:"nav-link text-light" do%>
+                <i class="fa-solid fa-house"></i>Home
+              <% end %>  
+            </li>
+            <li>
+              <%= link_to users_path, class:"nav-link text-light" do%>
+                <i class="fa-solid fa-users"></i>Users
+              <% end %>  
+            </li>
+            <li>
+              <%= link_to books_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-book-open"></i>Books
+              <% end %>  
+            </li>
+            <li>
+              <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-right-from-bracket"></i>Log out
+              <% end %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to root_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-house"></i>Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-link"></i>About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-user-plus"></i>Sign up
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-right-to-bracket"></i> Log in
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--  <div class="container-fluid">-->
+    <!-- header用のdiv -->
+    <!-- 要素を左右に分割して配置する際、justify-contentを使うかoffsetを使うかどちらがいいか検討、他の方法で良いものがあれば考える -->
+    <!-- offsetの方がbootstrapを使った直接的な考え方のためこっちの方がいいかも？ -->
+    <!--<div class="header row px-1 py-1" style="background-color: #424242">-->
+    <!--  <div class="col-4">-->
+    <!--    <div class="logo" style="color: white;">Bookers</div>-->
+    <!--  </div>-->
+      
+    <!--  <div class="col-8 offset-5">-->
+    <!--    <div class="row">-->
+    <!--      <%# if user_signed_in? %>-->
+    <!--        <div class="col-2">-->
+              <!-- colクラスがpaddingを左右に持っているため、div子要素を作成し背景色を付けてpaddingに背景色がつくことを避ける -->
+    <!--          <div class="header-content" style="color: white;">-->
+    <!--            <i class="fa-solid fa-house" style="color: white;"></i>-->
+    <!--            <%#= link_to "Home", user_path(current_user.id) %>-->
+    <!--          </div>-->
+    <!--        </div>-->
+            
+    <!--        <div class="col-2">-->
+    <!--          <div class="header-content">-->
+    <!--            <i class="fa-solid fa-book-open"></i>-->
+    <!--            <%#= link_to "Books", books_path %>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-2">-->
+    <!--          <div class="header-content">-->
+    <!--            <i class="fa-solid fa-right-from-bracket"></i>-->
+    <!--            <%#= link_to "Log out", destroy_user_session_path, method: :delete %>-->
+    <!--          </div>-->
+    <!--        </div>  -->
+    <!--      <%# else %>-->
+    <!--        <div class="col-6 offset-4">-->
+    <!--        <div class="row">-->
+    <!--          <div class="col-2">-->
+                <!-- colクラスがpaddingを左右に持っているため、div子要素を作成し背景色を付けてpaddingに背景色がつくことを避ける -->
+    <!--            <div class="header-content">-->
+    <!--              <i class="fa-solid fa-house"></i>-->
+    <!--              <%#= link_to "Home", root_path %>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--          <div class="col-2">-->
+    <!--            <div class="header-content">-->
+    <!--              <i class="fa-solid fa-link"></i>-->
+    <!--              <%#= link_to "About", home_about_path %>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--          <div class="col-2">-->
+    <!--            <div class="header-content">-->
+    <!--              <i class="fa-solid fa-user-plus"></i>-->
+    <!--              <%#= link_to "Sign up", new_user_registration_path %>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--          <div class="col-2">-->
+    <!--            <div class="header-content">-->
+    <!--              <i class="fa-solid fa-right-to-bracket"></i>-->
+    <!--              <%#= link_to "Log in", new_user_session_path %>-->
+    <!--            </div>-->
+    <!--          </div>  -->
+    <!--      <%# end %>      -->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
   </header>
+  
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
     <%= yield %>
+    
+   
   </body>
-</html>
-
-<footer>
+  
+  <footer>
   <div class="container mt-5">
     <div class="row">
       <div class="mx-auto">
@@ -64,3 +150,6 @@
   </div>
   
 </footer>
+
+</html>
+

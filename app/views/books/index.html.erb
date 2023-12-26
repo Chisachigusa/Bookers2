@@ -1,25 +1,40 @@
-<h1>User info books_index</h1>
-
-<%= render 'template', user: @user, book: @book %>
-
-
-<h1>Books</h1>
-
-<table class="books">
-  <% if @user.image.attached? %>
-    <%= image_tag @user.image, size: "100x100" %>
-  <% else %>
-    <%= image_tag 'no-image', size: "100x100" %>
-  <% end %>
-  
-  <h3>Title</h3>
-  <h3>Opinion</h3>
-<% @books.each do |book| %>
-
-  <span><%= book.title %></span>
-  
-  <span><%= book.body %></span>
-  
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
-</table>
+
+<div class="container">
+  <div class="row"> 
+    <div class="col-md-3">
+      <%= render 'template', user: @user, book: @book %>
+    </div>  
+    <div class="offset-md-1">
+    </div>
+    <div class="col-md-8">
+      <h1>Books</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Opinion</th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <th scope="row"><%= image_tag book.user.get_profile_image(100,100) %></th>
+            <td><%= link_to(book.title, book_path(book), class:"text-blue") %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>  
