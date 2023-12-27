@@ -4,9 +4,8 @@
     <div class="col-md-3">
       <%= render 'books/template', user: @user, book: @book %>
     </div>  
-    <div class="offset-md-1">
-    </div>
-    <div class="col-md-8">
+    
+    <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
       <table class="table">
         <thead>
@@ -19,7 +18,10 @@
         <% @books.each do |book| %>
         <tbody>
           <tr>
-            <th scope="row"><%= image_tag @user.get_profile_image(100,100) %></th>
+            <th><%= link_to user_path(book.user_id) do %>
+              <%= image_tag @user.get_profile_image(100,100) %>
+              <% end %>
+            </th>
             <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
             <td><%= book.body %></td>
           </tr>

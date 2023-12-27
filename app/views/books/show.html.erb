@@ -1,33 +1,29 @@
 <div class="container">
   <div class="row"> 
     <div class="col-md-3">
-      <%= render 'template', user: @user, book: @book %>
+      <%= render 'template', user: @user, book: @book_new %>
     </div>  
-    <div class="offset-md-1">
-    </div>
-    <div class="col-md-8">
+    
+    <div class="col-md-8 offset-md-1">
     <h1>Book detail</h1>
     
       <table class="table">
-  <!--<thead>-->
-  <!--  <tr>-->
-  <!--    <th scope="col"></th>-->
-  <!--    <th scope="col"></th>-->
-  <!--    <th scope="col"></th>-->
-  <!--    <th scope="col"></th>-->
-  <!--  </tr>-->
-  <!--</thead>-->
-  
         <tbody>
           <tr>
             <% if @book.user == current_user %>
-              <th scope="row"><%= image_tag @book.user.get_profile_image(100,100) %><%= link_to @book.user.name, user_path(@book.user) %></th>
+              <td><%= link_to user_path(@book.user), class:"text-blue" do %>
+                    <%= image_tag @book.user.get_profile_image(150,150) %><%= @book.user.name %>
+                  <% end %>
+              </td>
               <td><%= link_to(@book.title, book_path(@book), class:"text-blue") %></td>
               <td><%= @book.body %></td>
               <td><%= link_to "Edit", edit_book_path %></td>
               <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
             <% else %>
-              <th scope="row"><%= image_tag @book.user.get_profile_image(100,100) %><%= link_to @book.user.name, user_path(@book.user) %></th>
+              <th><%= link_to user_path(@book.user), class:"text-blue" do %>
+                    <%= image_tag @book.user.get_profile_image(100,100) %><%= @book.user.name %>
+                  <% end %>
+              </th>
               <td><%= link_to(@book.title, book_path(@book), class:"text-blue") %></td>
               <td><%= @book.body %></td>
             <% end %>  
